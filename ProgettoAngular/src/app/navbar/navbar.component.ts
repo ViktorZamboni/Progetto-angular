@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+nascondi: boolean = false;
 
+constructor() { }
+
+nascondiMenu()
+{
+  this.nascondi = !this.nascondi;
+}
 }
