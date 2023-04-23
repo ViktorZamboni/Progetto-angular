@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class DatiApiService {
   constructor(public http: HttpClient) { }
-  public getData() {
+  public getData(){
     this.http.get('https://api.covid19api.com/summary')
              .subscribe(data => {
                  console.log(data);

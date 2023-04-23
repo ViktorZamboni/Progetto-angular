@@ -13,7 +13,7 @@ const routes: Routes = [
     {path:'table', component: TableComponent}
   ]},
   {path:'about', component: AboutComponent},
-  {path:'ovewview', component: GlobalOverviewComponent},
+  {path:'overview', component: GlobalOverviewComponent},
   {path:'', redirectTo: '/home', pathMatch: 'full'},
   {path:'**', component: ErrorComponent}
 ];
