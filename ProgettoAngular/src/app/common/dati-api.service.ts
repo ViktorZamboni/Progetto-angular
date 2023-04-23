@@ -7,13 +7,6 @@ import { Injectable } from '@angular/core';
 export class DatiApiService {
   constructor(public http: HttpClient) { }
   public getData(){
-    this.http.get('https://api.covid19api.com/summary')
-             .subscribe(data => {
-                 console.log(data);
-             },
-             error => {
-    
-             }
-    );
+    return this.http.get('https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale-latest.json');
   }
 }

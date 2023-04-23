@@ -7,12 +7,21 @@ import { DatiApiService } from '../common/dati-api.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  data: any;
+  dati: any;
+  data: string = "";
+  casiTotali: string = "";
+  deceduti: number = 0;
+  nuoviCasi: number = 0;
 
   constructor(private servizio: DatiApiService) { }
 
   ngOnInit(): void {
-    this.servizio.getData();
+    this.servizio.getData().subscribe(datone => {
+      this.dati = datone;
+      this.data = this.dati[0].data;
+      this.casiTotali = this.dati[0].totale_casi;
+      this.deceduti = this.dati[0].deceduti;
+      this.nuoviCasi = this.dati[0].nuovi_positivi;
+    });
   }
-
 }
