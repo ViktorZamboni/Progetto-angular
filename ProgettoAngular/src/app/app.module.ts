@@ -12,6 +12,7 @@ import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { GlobalOverviewComponent } from './global-overview/global-overview.component';
 import { ErrorComponent } from './error/error.component';
+import { TabellaRegioniComponent } from './tabella-regioni/tabella-regioni.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ErrorComponent } from './error/error.component';
     AboutComponent,
     HomeComponent,
     GlobalOverviewComponent,
-    ErrorComponent
+    ErrorComponent,
+    TabellaRegioniComponent
   ],
   imports: [
     BrowserModule,

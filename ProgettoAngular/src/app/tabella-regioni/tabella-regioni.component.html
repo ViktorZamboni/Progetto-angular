@@ -1,0 +1,18 @@
+<table class="table-auto mt-10 text-center mx-auto border-2 border-gray-300 shadow-lg">
+    <thead>
+        <tr>
+            <th>Regione</th>
+            <th>Casi Totali</th>
+            <th>Casi attuali</th>
+            <th>Decessi</th>
+        </tr>
+    </thead>
+        <tbody>
+            <tr *ngFor="let regione of dati">
+                <td>{{regione.denominazione_regione}}</td>
+                <td>{{regione.totale_casi}}</td>
+                <td>{{regione.totale_positivi}}</td>
+                <td>{{regione.deceduti}}</td>
+            </tr>
+        </tbody>
+</table>
