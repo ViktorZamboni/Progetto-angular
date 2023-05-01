@@ -24,9 +24,9 @@
           <!-- Menu principale -->
           <div class="hidden sm:block sm:ml-6">
             <div class="flex space-x-4">
-              <a routerLink="home" [ngClass]="arrayPosizione[0]" (click)="cambiaStile(0)">Statistiche</a>
-              <a routerLink="about" [ngClass]="arrayPosizione[1]" (click)="cambiaStile(1)">About</a>
-              <a routerLink="overview" [ngClass]="arrayPosizione[2]" (click)="cambiaStile(2)">Overview</a>
+              <a routerLink="home" [ngClass]="servizio.arrayPosizione[0]" (click)="servizio.cambiaStile(0)">Statistiche</a>
+              <a routerLink="about" [ngClass]="servizio.arrayPosizione[1]" (click)="servizio.cambiaStile(1)">About</a>
+              <a routerLink="overview" [ngClass]="servizio.arrayPosizione[2]" (click)="servizio.cambiaStile(2)">Overview</a>
             </div>
           </div>
         </div>
@@ -34,11 +34,11 @@
     </div>
   
     <!-- Menu mobile, mostra e nasconde il menu principale -->
-    <div class="sm:hidden" id="mobile-menu" *ngIf="nascondi">
+    <div class="sm:hidden sm:w-full" id="mobile-menu" *ngIf="nascondi">
       <div class="px-2 pt-2 pb-3 space-y-1">
-        <a routerLink="home" [ngClass]="arrayPosizione[0]" (click)="cambiaStile(0)">Statistiche</a>
-        <a routerLink="about" [ngClass]="arrayPosizione[1]" (click)="cambiaStile(1)">About</a>
-        <a routerLink="overview" [ngClass]="arrayPosizione[2]" (click)="cambiaStile(2)">Overview</a>
+        <a routerLink="home" [ngClass]="servizio.arrayPosizione[0]" (click)="servizio.cambiaStile(0)">Statistiche</a>
+        <a routerLink="about" [ngClass]="servizio.arrayPosizione[1]" (click)="servizio.cambiaStile(1)">About</a>
+        <a routerLink="overview" [ngClass]="servizio.arrayPosizione[2]" (click)="servizio.cambiaStile(2)">Overview</a>
       </div>
     </div>
   </nav>

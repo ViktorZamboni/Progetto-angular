@@ -1,18 +1,28 @@
-<table class="table-auto mt-10 text-center mx-auto border-2 border-gray-300 shadow-lg">
+<table class="mt-10 text-center shadow-lg mb-20 table-auto w-full">
     <thead>
         <tr>
+            <th></th>
             <th>Regione</th>
             <th>Casi Totali</th>
             <th>Casi attuali</th>
             <th>Decessi</th>
+            <th>Terapia Intensiva</th>
+            <th>Isolamenti Domiciliari</th>
+            <th>Dimessi Guariti</th>
+            <th>Tamponi Totali</th>
         </tr>
     </thead>
         <tbody>
-            <tr *ngFor="let regione of dati">
+            <tr *ngFor="let regione of dati; let i=index" class="border-2 border-gray-300 rounded-2xl">
+                <td><img [src]="'./assets/'+i+'.png'" class="h-10 w-3/5"></td>
                 <td>{{regione.denominazione_regione}}</td>
                 <td>{{regione.totale_casi}}</td>
                 <td>{{regione.totale_positivi}}</td>
                 <td>{{regione.deceduti}}</td>
+                <td>{{regione.terapia_intensiva}}</td>
+                <td>{{regione.isolamento_domiciliare}}</td>
+                <td>{{regione.dimessi_guariti}}</td>
+                <td>{{regione.tamponi}}</td>
             </tr>
         </tbody>
 </table>
