@@ -1,3 +1,6 @@
+<select [(ngModel)]="mese" (click)="cambiaDatiTabella()">
+        <option *ngFor="let data of mesi">{{data}}</option>
+</select>
 <table class="mt-10 text-center shadow-lg mb-20 table-auto w-full">
     <thead>
         <tr>
@@ -14,8 +17,8 @@
     </thead>
         <tbody>
             <tr *ngFor="let regione of dati; let i=index" class="border-2 border-gray-300 rounded-2xl">
-                <td><img [src]="'./assets/'+i+'.png'" class="h-10 w-3/5"></td>
-                <td>{{regione.denominazione_regione}}</td>
+                <td><img [src]="'./assets/'+i+'.png'" class="h-10 w-3/5 sm:h-auto md:h-10"></td>
+                <td><a href="https://www.regione.{{nomeRegioniLink[i]}}.it" class="hover:underline">{{regione.denominazione_regione}}</a></td>
                 <td>{{regione.totale_casi}}</td>
                 <td>{{regione.totale_positivi}}</td>
                 <td>{{regione.deceduti}}</td>
@@ -26,3 +29,4 @@
             </tr>
         </tbody>
 </table>
+

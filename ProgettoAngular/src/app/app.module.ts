@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { GlobalOverviewComponent } from './global-overview/global-overview.component';
 import { ErrorComponent } from './error/error.component';
 import { TabellaRegioniComponent } from './tabella-regioni/tabella-regioni.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { TabellaRegioniComponent } from './tabella-regioni/tabella-regioni.compo
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
