@@ -7,14 +7,20 @@ import { DatiApiService } from '../common/dati-api.service';
   styleUrls: ['./tabella-regioni.component.css']
 })
 export class TabellaRegioniComponent {
+  //dati regioni
   dati: any;
+  //dati totale nazionali
   datiTotale: any;
+  //date per il select
   mesi : string[] = [];
+  //data singola del select per il cambio dati
   mese:  string = "2020-02-24T18:00:00";
+  //link per le regioni (per esempio friuli venezia giulia --> fvg)
   nomeRegioniLink: string[] = ['abruzzo', 'basilicata', 'calabria', 'campania', 'emilia-romagna', 'fvg', 'lazio', 'liguria', 'lombardia', 'marche', 'molise', 'taa', 'taa', 'piemonte', 'puglia', 'sardegna', 'sicilia', 'toscana', 'umbria', 'vda', 'veneto'];
   
   constructor (private servizio: DatiApiService) { }
 
+  //inizializzazione dati regioni e dati totale nazionale e riempimento array mesi per creare le opzione del select
   ngOnInit(): void {
     this.servizio.getDataRegioni().subscribe(datone => {
       this.dati = datone;
@@ -32,7 +38,7 @@ export class TabellaRegioniComponent {
     });
   }
 
-  
+  //metodo per cambiare i dati della tabella in base al select
   cambiaDatiTabella()
   {
     let i = 0;
