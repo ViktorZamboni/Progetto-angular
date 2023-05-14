@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 export class DatiApiService {
   //variabile per lo stile della navbar
   arrayPosizione: string[] = ["stileSelezionato", "stileDefault", "stileDefault"];
+
   constructor(public http: HttpClient) { }
 
   //ultimi dati nazionali

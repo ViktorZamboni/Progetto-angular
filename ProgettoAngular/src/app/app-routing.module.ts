@@ -7,18 +7,14 @@ import { TableComponent } from './table/table.component';
 import { GlobalOverviewComponent } from './global-overview/global-overview.component';
 import { ErrorComponent } from './error/error.component';
 import { TabellaRegioniComponent } from './tabella-regioni/tabella-regioni.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [
-  {path:'home', component: HomeComponent, children: [
-    {path:'statistiche', component: StatisticheComponent},
-    {path:'tableRegioni', component: TabellaRegioniComponent}
-  ]},
-  {path:'about', component: AboutComponent},
-  {path:'overview', component: GlobalOverviewComponent, children: [
-    {path:'table', component: TableComponent}
-  ]},
-  {path:'', redirectTo: '/home', pathMatch: 'full'},
-  {path:'**', component: ErrorComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'signup', component: SignupComponent},
+  {path: 'home', component: HomeComponent},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
 ];
 
 @NgModule({

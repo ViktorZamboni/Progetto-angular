@@ -14,6 +14,8 @@ import { GlobalOverviewComponent } from './global-overview/global-overview.compo
 import { ErrorComponent } from './error/error.component';
 import { TabellaRegioniComponent } from './tabella-regioni/tabella-regioni.component';
 import { FormsModule } from '@angular/forms';
+import { SignupComponent } from './signup/signup.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     GlobalOverviewComponent,
     ErrorComponent,
-    TabellaRegioniComponent
+    TabellaRegioniComponent,
+    SignupComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
