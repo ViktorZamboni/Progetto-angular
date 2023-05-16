@@ -10,11 +10,13 @@ import Chart from 'chart.js/auto';
 export class StatisticheComponent {
   //variabile per il grafico
   chart: any;
+  arrayDati: any = [];
+  arrayDate: any = [];
   datone : any = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: this.arrayDate,
     datasets: [{
-      label: 'Looping tension',
-      data: [65, 59, 80, 81, 26, 55, 40],
+      label: 'Casi Nazionali Covid-19',
+      data: this.arrayDati,
       fill: false,
       borderColor: 'rgb(75, 192, 192)',
     }]
@@ -25,7 +27,7 @@ export class StatisticheComponent {
       y: {
         ticks: {
           callback: function (value : any) {
-            return value + 1;
+            return value;
           }
         },
         grid: {
@@ -48,8 +50,6 @@ export class StatisticheComponent {
   };
 
 
-
-
   
   //dati nazionali
   dati: any;
@@ -68,27 +68,44 @@ export class StatisticheComponent {
   //variabile per la variazione dei casi totali positivi
   variazioneTotalePositivi: number = 0;
 
+  
+
   constructor(private servizio: DatiApiService) { }
 
   //inizializzazione dati nazionali
   ngOnInit(): void {
-    this.createBar();
+    
     this.servizio.getDataNazionale().subscribe(datone => {
         this.dati = datone;
-        this.data = this.dati[0].data;
-        this.casiTotali = this.dati[0].totale_casi;
-        this.deceduti = this.dati[0].deceduti;
-        this.nuoviCasi = this.dati[0].nuovi_positivi;
-        this.terapiaIntensiva = this.dati[0].terapia_intensiva;
-        this.totalePositivi = this.dati[0].totale_positivi;
-        this.variazioneTotalePositivi = this.dati[0].variazione_totale_positivi;
+        console.log(this.dati);
+        this.data = this.dati[(this.dati.length-1)].data;
+        this.casiTotali = this.dati[(this.dati.length-1)].totale_casi;
+        this.deceduti = this.dati[(this.dati.length-1)].deceduti;
+        this.nuoviCasi = this.dati[(this.dati.length-1)].nuovi_positivi;
+        this.terapiaIntensiva = this.dati[(this.dati.length-1)].terapia_intensiva;
+        this.totalePositivi = this.dati[(this.dati.length-1)].totale_positivi;
+        this.variazioneTotalePositivi = this.dati[(this.dati.length-1)].variazione_totale_positivi;
+        this.inserisciDatiUltimeDueSettimane();
+        this.chart = new Chart('barChart', this.config);
       });
     }
 
-    createBar()
+    inserisciDatiUltimeDueSettimane()
     {
-      //creazione grafico
-      this.chart = new Chart('barChart', this.config);
+
+      for(let i = 14; i > 0; i--)
+      {
+        this.arrayDati.push(this.dati[(this.dati.length-i)].totale_casi);
+      }
+
+      for(let i = 14; i > 0; i--)
+      {
+        this.arrayDate.push(this.dati[(this.dati.length-i)].data.substring(0, 10));
+      }
     }
 
+    inserisciDatiUltimoAnno()
+    {
+      
+    }
 }
