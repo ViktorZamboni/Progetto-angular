@@ -22,7 +22,10 @@ export class StatisticheComponent {
     }]
   };
 
-  options: any = {
+  options: any = {    
+    mainteinAspectRatio: true,
+    responsive: true,
+    
     scales: {
       y: {
         ticks: {
@@ -104,8 +107,22 @@ export class StatisticheComponent {
       }
     }
 
-    inserisciDatiUltimoAnno()
+    inserisciDatiUltimi12Mesi()
     {
-      
+      let newDati : any = [];
+      let newDate : any = [];
+      for(let i = 0; i < this.dati.length; i++)
+      {
+        if(this.dati[i].data.substring(8, 10) == "01")
+        {
+          newDati.push(this.dati[i].totale_casi);
+          newDate.push(this.dati[i].data.substring(0, 10));
+        }
+      }
+      this.chart.data.labels = newDate;
+      this.chart.data.datasets[0].data = newDati;
+      console.log(this.chart.data.datasets[0].data);
+      console.log(this.chart.data.labels);
+      this.chart.update();
     }
-}
+  }

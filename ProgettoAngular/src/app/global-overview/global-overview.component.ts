@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DatiApiService } from '../common/dati-api.service';
 
 @Component({
   selector: 'app-global-overview',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./global-overview.component.css']
 })
 export class GlobalOverviewComponent {
+constructor(public servizio: DatiApiService) { }
 
 }
