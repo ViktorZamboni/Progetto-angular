@@ -8,7 +8,7 @@ import Chart from 'chart.js/auto';
   styleUrls: ['./statistiche.component.css']
 })
 export class StatisticheComponent {
-  //variabile per il grafico
+  //variabili per il grafico
   chart: any;
   arrayDati: any = [];
   arrayDate: any = [];
@@ -25,7 +25,6 @@ export class StatisticheComponent {
   options: any = {    
     mainteinAspectRatio: true,
     responsive: true,
-    
     scales: {
       y: {
         ticks: {
@@ -45,7 +44,7 @@ export class StatisticheComponent {
       }
     },
   };
-  
+
   config: any = {
     type: 'line',
     data: this.datone,
@@ -88,14 +87,13 @@ export class StatisticheComponent {
         this.terapiaIntensiva = this.dati[(this.dati.length-1)].terapia_intensiva;
         this.totalePositivi = this.dati[(this.dati.length-1)].totale_positivi;
         this.variazioneTotalePositivi = this.dati[(this.dati.length-1)].variazione_totale_positivi;
-        this.inserisciDatiUltimeDueSettimane();
+        this.inserisciDatiiniziali();
         this.chart = new Chart('barChart', this.config);
       });
     }
 
-    inserisciDatiUltimeDueSettimane()
+    inserisciDatiiniziali()
     {
-
       for(let i = 14; i > 0; i--)
       {
         this.arrayDati.push(this.dati[(this.dati.length-i)].totale_casi);
@@ -107,7 +105,26 @@ export class StatisticheComponent {
       }
     }
 
-    inserisciDatiUltimi12Mesi()
+    inserisciDatiUltimeDueSettimane()
+    {
+      let newDati : any = [];
+      let newDate : any = [];
+
+      for(let i = 14; i > 0; i--)
+      {
+        newDati.push(this.dati[(this.dati.length-i)].totale_casi);
+      }
+
+      for(let i = 14; i > 0; i--)
+      {
+        newDate.push(this.dati[(this.dati.length-i)].data.substring(0, 10));
+      }
+      this.chart.data.labels = newDate;
+      this.chart.data.datasets[0].data = newDati;
+      this.chart.update();
+    }
+
+    inserisciDatiLifetime()
     {
       let newDati : any = [];
       let newDate : any = [];
@@ -121,8 +138,29 @@ export class StatisticheComponent {
       }
       this.chart.data.labels = newDate;
       this.chart.data.datasets[0].data = newDati;
-      console.log(this.chart.data.datasets[0].data);
-      console.log(this.chart.data.labels);
+      this.chart.update();
+    }
+
+    inserisciDatiultimi6Mesi()
+    {
+      let newDati : any = [];
+      let newDate : any = [];
+      let i = this.dati.length-1;
+      let contatore = 0;
+      while(contatore<12)
+      {
+       if(this.dati[i].data.substring(8, 10) == "01" || this.dati[i].data.substring(8, 10) == "15")
+       {
+         newDati.push(this.dati[i].totale_casi);
+         newDate.push(this.dati[i].data.substring(0, 10));
+         contatore++;
+       }
+        i--;
+      }
+      newDati.reverse();
+      newDate.reverse();
+      this.chart.data.labels = newDate;
+      this.chart.data.datasets[0].data = newDati;
       this.chart.update();
     }
   }
