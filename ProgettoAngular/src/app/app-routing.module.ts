@@ -6,15 +6,16 @@ import { GlobalOverviewComponent } from './global-overview/global-overview.compo
 import { ErrorComponent } from './error/error.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { RoutingGuardGuard } from './common/routing-guard.guard';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'login', pathMatch: 'full'},
-  {path: 'login', component: LoginComponent},
-  {path: 'signup', component: SignupComponent},
-  {path: 'home', component: HomeComponent},
-  {path: 'about', component: AboutComponent},
-  {path: 'overview', component: GlobalOverviewComponent},
-  {path: '**', component: ErrorComponent},
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'home', component: HomeComponent, canActivate: [RoutingGuardGuard] },
+  { path: 'about', component: AboutComponent, canActivate: [RoutingGuardGuard] },
+  { path: 'overview', component: GlobalOverviewComponent, canActivate: [RoutingGuardGuard] },
+  { path: '**', component: ErrorComponent },
 ];
 
 @NgModule({

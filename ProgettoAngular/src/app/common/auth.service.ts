@@ -7,11 +7,13 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
+  loggato: boolean = false;
   constructor(private fireAuth: AngularFireAuth, private router: Router) { }
 
+  //metodo per il login
   login(email: string, password: string) {
     this.fireAuth.signInWithEmailAndPassword(email, password).then(() => {
-      localStorage.setItem('token', 'true');
+      this.loggato = true;
       this.router.navigate(['/home']);
     }).catch((error) => {
       alert(error.message);
@@ -19,22 +21,20 @@ export class AuthService {
     });
   }
 
+  //metodi per la registrazione
   signup(email: string, password: string) {
     this.fireAuth.createUserWithEmailAndPassword(email, password).then(() => {
       alert("Account creato con successo!");
       this.router.navigate(['/login']);
     }).catch((error) => {
-      alert(error.message+email+password);
+      alert(error.message);
       this.router.navigate(['/signup']);
     });
   }
 
-  logout() {
-    this.fireAuth.signOut().then(() => {
-      localStorage.removeItem('token');
-      this.router.navigate(['/login']);
-    }).catch((error) => {
-      alert(error.message);
-    });
+  //metodo per vedere se l'utente è loggato
+  isLogged(): boolean {
+    return this.loggato;
   }
+
 }

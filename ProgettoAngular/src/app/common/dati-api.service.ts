@@ -24,6 +24,11 @@ export class DatiApiService {
   public getDataTotaleNazione(){
     return this.http.get('https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json');
   }
+
+  //ultimi dati regionali
+  public getDataRegioniLatest(){
+    return this.http.get('https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni-latest.json');
+  }
   
 //metodo per cambiare lo stile della navbar  
 cambiaStile(posizione: number)

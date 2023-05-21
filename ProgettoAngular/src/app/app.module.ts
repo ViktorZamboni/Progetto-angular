@@ -7,7 +7,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { StatisticheComponent } from './statistiche/statistiche.component';
-import { TableComponent } from './table/table.component';
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { GlobalOverviewComponent } from './global-overview/global-overview.component';
@@ -25,7 +24,6 @@ import { AngularFireModule } from '@angular/fire/compat';
     NavbarComponent,
     FooterComponent,
     StatisticheComponent,
-    TableComponent,
     AboutComponent,
     HomeComponent,
     GlobalOverviewComponent,

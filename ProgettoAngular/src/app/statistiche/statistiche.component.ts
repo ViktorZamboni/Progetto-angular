@@ -12,7 +12,7 @@ export class StatisticheComponent {
   chart: any;
   arrayDati: any = [];
   arrayDate: any = [];
-  datone : any = {
+  datone: any = {
     labels: this.arrayDate,
     datasets: [{
       label: 'Casi Nazionali Covid-19',
@@ -22,13 +22,13 @@ export class StatisticheComponent {
     }]
   };
 
-  options: any = {    
+  options: any = {
     mainteinAspectRatio: true,
     responsive: true,
     scales: {
       y: {
         ticks: {
-          callback: function (value : any) {
+          callback: function (value: any) {
             return value;
           }
         },
@@ -52,7 +52,7 @@ export class StatisticheComponent {
   };
 
 
-  
+
   //dati nazionali
   dati: any;
   //variabile per la data 
@@ -70,97 +70,89 @@ export class StatisticheComponent {
   //variabile per la variazione dei casi totali positivi
   variazioneTotalePositivi: number = 0;
 
-  
+
 
   constructor(private servizio: DatiApiService) { }
 
   //inizializzazione dati nazionali
   ngOnInit(): void {
-    
+
     this.servizio.getDataNazionale().subscribe(datone => {
-        this.dati = datone;
-        console.log(this.dati);
-        this.data = this.dati[(this.dati.length-1)].data;
-        this.casiTotali = this.dati[(this.dati.length-1)].totale_casi;
-        this.deceduti = this.dati[(this.dati.length-1)].deceduti;
-        this.nuoviCasi = this.dati[(this.dati.length-1)].nuovi_positivi;
-        this.terapiaIntensiva = this.dati[(this.dati.length-1)].terapia_intensiva;
-        this.totalePositivi = this.dati[(this.dati.length-1)].totale_positivi;
-        this.variazioneTotalePositivi = this.dati[(this.dati.length-1)].variazione_totale_positivi;
-        this.inserisciDatiiniziali();
-        this.chart = new Chart('barChart', this.config);
-      });
+      this.dati = datone;
+      console.log(this.dati);
+      this.data = this.dati[(this.dati.length - 1)].data;
+      this.casiTotali = this.dati[(this.dati.length - 1)].totale_casi;
+      this.deceduti = this.dati[(this.dati.length - 1)].deceduti;
+      this.nuoviCasi = this.dati[(this.dati.length - 1)].nuovi_positivi;
+      this.terapiaIntensiva = this.dati[(this.dati.length - 1)].terapia_intensiva;
+      this.totalePositivi = this.dati[(this.dati.length - 1)].totale_positivi;
+      this.variazioneTotalePositivi = this.dati[(this.dati.length - 1)].variazione_totale_positivi;
+      this.inserisciDatiiniziali();
+      this.chart = new Chart('barChart', this.config);
+    });
+  }
+
+  //metodo per inserire i dati iniziali nel grafico
+  inserisciDatiiniziali() {
+    for (let i = 14; i > 0; i--) {
+      this.arrayDati.push(this.dati[(this.dati.length - i)].totale_casi);
     }
 
-    inserisciDatiiniziali()
-    {
-      for(let i = 14; i > 0; i--)
-      {
-        this.arrayDati.push(this.dati[(this.dati.length-i)].totale_casi);
-      }
-
-      for(let i = 14; i > 0; i--)
-      {
-        this.arrayDate.push(this.dati[(this.dati.length-i)].data.substring(0, 10));
-      }
-    }
-
-    inserisciDatiUltimeDueSettimane()
-    {
-      let newDati : any = [];
-      let newDate : any = [];
-
-      for(let i = 14; i > 0; i--)
-      {
-        newDati.push(this.dati[(this.dati.length-i)].totale_casi);
-      }
-
-      for(let i = 14; i > 0; i--)
-      {
-        newDate.push(this.dati[(this.dati.length-i)].data.substring(0, 10));
-      }
-      this.chart.data.labels = newDate;
-      this.chart.data.datasets[0].data = newDati;
-      this.chart.update();
-    }
-
-    inserisciDatiLifetime()
-    {
-      let newDati : any = [];
-      let newDate : any = [];
-      for(let i = 0; i < this.dati.length; i++)
-      {
-        if(this.dati[i].data.substring(8, 10) == "01")
-        {
-          newDati.push(this.dati[i].totale_casi);
-          newDate.push(this.dati[i].data.substring(0, 10));
-        }
-      }
-      this.chart.data.labels = newDate;
-      this.chart.data.datasets[0].data = newDati;
-      this.chart.update();
-    }
-
-    inserisciDatiultimi6Mesi()
-    {
-      let newDati : any = [];
-      let newDate : any = [];
-      let i = this.dati.length-1;
-      let contatore = 0;
-      while(contatore<12)
-      {
-       if(this.dati[i].data.substring(8, 10) == "01" || this.dati[i].data.substring(8, 10) == "15")
-       {
-         newDati.push(this.dati[i].totale_casi);
-         newDate.push(this.dati[i].data.substring(0, 10));
-         contatore++;
-       }
-        i--;
-      }
-      newDati.reverse();
-      newDate.reverse();
-      this.chart.data.labels = newDate;
-      this.chart.data.datasets[0].data = newDati;
-      this.chart.update();
+    for (let i = 14; i > 0; i--) {
+      this.arrayDate.push(this.dati[(this.dati.length - i)].data.substring(0, 10));
     }
   }
+
+  //metodo per inserire i dati delle ultime due settimane nel grafico
+  inserisciDatiUltimeDueSettimane() {
+    let newDati: any = [];
+    let newDate: any = [];
+
+    for (let i = 14; i > 0; i--) {
+      newDati.push(this.dati[(this.dati.length - i)].totale_casi);
+    }
+
+    for (let i = 14; i > 0; i--) {
+      newDate.push(this.dati[(this.dati.length - i)].data.substring(0, 10));
+    }
+    this.chart.data.labels = newDate;
+    this.chart.data.datasets[0].data = newDati;
+    this.chart.update();
+  }
+
+  //metodo per inserire i dati degli ultimi 30 giorni nel grafico
+  inserisciDatiLifetime() {
+    let newDati: any = [];
+    let newDate: any = [];
+    for (let i = 0; i < this.dati.length; i++) {
+      if (this.dati[i].data.substring(8, 10) == "01") {
+        newDati.push(this.dati[i].totale_casi);
+        newDate.push(this.dati[i].data.substring(0, 10));
+      }
+    }
+    this.chart.data.labels = newDate;
+    this.chart.data.datasets[0].data = newDati;
+    this.chart.update();
+  }
+
+  //metodo per inserire i dati degli ultimi 6 mesi nel grafico
+  inserisciDatiultimi6Mesi() {
+    let newDati: any = [];
+    let newDate: any = [];
+    let i = this.dati.length - 1;
+    let contatore = 0;
+    while (contatore < 12) {
+      if (this.dati[i].data.substring(8, 10) == "01" || this.dati[i].data.substring(8, 10) == "15") {
+        newDati.push(this.dati[i].totale_casi);
+        newDate.push(this.dati[i].data.substring(0, 10));
+        contatore++;
+      }
+      i--;
+    }
+    newDati.reverse();
+    newDate.reverse();
+    this.chart.data.labels = newDate;
+    this.chart.data.datasets[0].data = newDati;
+    this.chart.update();
+  }
+}

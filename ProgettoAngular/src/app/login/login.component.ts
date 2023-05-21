@@ -12,14 +12,15 @@ export class LoginComponent {
 
   constructor(private auth: AuthService) { }
 
+  //metodo per effettuare il login
   login() {
-    if(this.mail == "" || this.password == "") {
+    if (this.mail == "" || this.password == "") {
       alert("Inserire tutti i campi!");
       return;
     }
 
     this.auth.login(this.mail, this.password);
-    
+
     this.mail = "";
     this.password = "";
   }
