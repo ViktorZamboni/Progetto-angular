@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../common/auth.service';
 
 @Component({
   selector: 'app-error',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./error.component.css']
 })
 export class ErrorComponent {
+constructor(public auth: AuthService) { }
 
 }

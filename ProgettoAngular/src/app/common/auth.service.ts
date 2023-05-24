@@ -37,4 +37,7 @@ export class AuthService {
     return this.loggato;
   }
 
+  setLogged(loggato: boolean) {
+    this.loggato = loggato;
+  }
 }
