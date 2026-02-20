@@ -1,45 +1,71 @@
 # Progetto-angular
 
-Sito web per la visualizzazione dei dati COVID-19 in Italia. Realizzato da Viktor Zamboni, alunno della classe 4^Bi dell'Istituto Tecnico Tecnologico "Marconi" di Rovereto.
+Web application for visualizing COVID-19 data in Italy.  
+Created by Viktor Zamboni, student of class 4^Bi at Istituto Tecnico Tecnologico “Marconi” in Rovereto.
 
-## Descrizione
-L'applicazione fornisce una dashboard interattiva con due viste principali:
-- **Home**: grafico andamento nazionale e dati storici/correnti (contagi, decessi, ricoveri, etc.).
-- **Overview**: mappa interattiva dell'Italia. Selezionando una regione, vengono mostrati i dati attuali specifici di quella regione.
+## Description
 
-## Tecnologie utilizzate
-- **Framework frontend**: Angular
-- **Stile**: Tailwind CSS
-- **Grafici**: Chart.js
-- **Backend/Database**: Firebase (Firestore per dati, Authentication per eventuale accesso)
-- **Distribuzione**: (inferita) hosting statico (Firebase Hosting, Vercel, Netlify)
+The application provides an interactive dashboard with two main views:
 
-## Prerequisiti
-- Node.js (versione 16 o superiore) e npm installati.
-- Angular CLI installata globalmente: `npm install -g @angular/cli`
-- Progetto Firebase configurato (credenziali da inserire in `environment.ts`).
+- **Home**: national trend chart and historical/current metrics (cases, deaths, hospitalizations, etc.).
+- **Overview**: interactive map of Italy. When a region is selected, the app shows current data for that specific region.
 
-## Installazione ed esecuzione locale
-1. Clonare il repository:
-   ```bash
-   git clone https://github.com/ViktorZamboni/Progetto-angular.git
-   cd Progetto-angular
+## Tech Stack
 
-## Utilizzo
-Navigazione: menu principale per passare da Home a Overview.
+- **Frontend framework**: Angular
+- **Styling**: Tailwind CSS
+- **Charts**: Chart.js
+- **Backend/Database**: Firebase (Firestore for data, Authentication if needed)
+- **Deployment**: static hosting (for example Firebase Hosting, Vercel, or Netlify)
 
-Home: osservare il grafico nazionale e i dati aggregati. I dati sono aggiornati automaticamente.
+## Prerequisites
 
-Overview: interagire con la mappa cliccando sulle regioni; i dati della regione selezionata vengono visualizzati a lato.
+- Node.js (version 16 or higher) and npm
+- Angular CLI installed globally:
 
-## Configurazione Firebase
-Creare un progetto su Firebase Console.
+```bash
+npm install -g @angular/cli
+```
 
-Abilitare Firestore e Authentication (se necessario).
+- A configured Firebase project (credentials in the environment files)
 
-Ottenere la configurazione SDK (apiKey, authDomain, projectId, etc.).
+## Local Setup
 
-## Creare il file src/environments/environment.ts (e environment.prod.ts) con il seguente contenuto:
+1. Clone the repository:
+
+```bash
+git clone https://github.com/ViktorZamboni/Progetto-angular.git
+cd Progetto-angular/ProgettoAngular
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Start the development server:
+
+```bash
+ng serve
+```
+
+4. Open the app at `http://localhost:4200/`.
+
+## Usage
+
+- Use the main navigation to switch between **Home** and **Overview**.
+- In **Home**, view national charts and aggregated metrics.
+- In **Overview**, click a region on the map to display regional data.
+
+## Firebase Configuration
+
+1. Create a project in Firebase Console.
+2. Enable Firestore and Authentication (if required).
+3. Copy your Firebase SDK configuration (`apiKey`, `authDomain`, `projectId`, etc.).
+4. Create/update `src/environments/environment.ts` (and `environment.prod.ts`) with:
+
+```ts
 export const environment = {
   production: false,
   firebase: {
@@ -51,4 +77,6 @@ export const environment = {
     appId: "YOUR_APP_ID"
   }
 };
-Strutturare i dati in Firestore secondo le necessità dell'app (collezione regioni, nazionale, etc.).
+```
+
+5. Organize Firestore data according to the app requirements (for example, national and regional collections).
